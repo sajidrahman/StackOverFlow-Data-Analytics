@@ -1,5 +1,5 @@
 # StackOverFlow-DataDumps-Analystics
-Performed data analytics on publicly released data of StackOverflow using big data techniques like spark1.3, pig and hive. 
+We Performed data analytics on publicly released data of StackOverflow using big data techniques like spark1.3, pig and hive. 
 We answered following set of questions on the data :
 1. Most Valuable Users in the Stack Overflow,
 2. Users with High Reputation in the site,
