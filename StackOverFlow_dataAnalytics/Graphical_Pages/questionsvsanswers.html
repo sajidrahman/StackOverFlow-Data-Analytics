@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+     var data;
+     var chart;
+
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawGID);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+ function drawGID() {
+      var query = new google.visualization.Query(
+          'https://docs.google.com/spreadsheets/d/1x_G44h5BpZb16UCrxUZk0Iam8FAX09y9-7gJJgyKXBo/edit?usp=sharing');
+
+      query.setQuery('SELECT A,B,C');
+
+      query.send(handleQueryResponse);
+    }
+       var options = {
+  title: 'Evolution of Questions and Answers counts by month',
+  titleTextStyle:{fontSize:30},
+  vAxis: {
+    title:'Number of New Questions and Answers',titleTextStyle:{italic:false,bold :true,fontSize: 25},
+    ticks: [0,300,800,1500,2500,3500,4500,5500,6500]
+         },
+  hAxis: {title:'Year',titleTextStyle:{italic:false,bold : true,fontSize: 25}
+    },
+ isStacked: true,
+  };
+
+
+    function handleQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+
+      var data = response.getDataTable();
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(data,options);
+    }
+    </script>
+  </head>
+  <body>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div" style="width:1300; height:800"></div>
+  </body>
+</htm
